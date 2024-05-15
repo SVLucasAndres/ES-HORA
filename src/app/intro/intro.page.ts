@@ -6,6 +6,7 @@ import { Firestore } from '@angular/fire/firestore';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { Storage } from '@ionic/storage-angular';
 import { gsap } from "gsap";
+import { Browser } from '@capacitor/browser';
 @Component({
   selector: 'app-intro',
   templateUrl: './intro.page.html',
@@ -31,7 +32,9 @@ export class IntroPage implements OnInit {
   codigo:any;
   @ViewChild(IonInput, { static: true }) ionInputEl!: IonInput;
   constructor(private storage:Storage,private router:NavController,private loadingCtrl:LoadingController,private alertController: AlertController, private toastController:ToastController, private db:Firestore) {}
-  
+  async manual() {
+    await Browser.open({ url: 'http://192.168.4.1/internet' });
+  };
   ngOnInit() {
     this.go=false;
     this.go1=false;

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Firestore } from '@angular/fire/firestore';
+import { Browser } from '@capacitor/browser';
 import { AlertController } from '@ionic/angular';
 import { Storage } from '@ionic/storage-angular';
 import { Timestamp, doc, setDoc } from 'firebase/firestore';
@@ -10,7 +11,7 @@ import { Timestamp, doc, setDoc } from 'firebase/firestore';
   styleUrls: ['./agendar-page.page.scss'],
 })
 export class AgendarPagePage implements OnInit {
-
+  
   async ngOnInit() {
     await this.storage.create();
     this.hora();
@@ -23,7 +24,7 @@ export class AgendarPagePage implements OnInit {
     this.fechaHoraFormateada = await `${fechaFormateada}T${horaFormateada}`;
   }
   formData = {
-    logoCom:"",
+    logoCom:"https://ionicframework.com/docs/img/demos/thumbnail.svg",
     comando:"",
     fecha:"",
     color:""
@@ -31,6 +32,13 @@ export class AgendarPagePage implements OnInit {
   botonHabilitado: boolean = false;
   actualizarEstadoBoton() {
     this.botonHabilitado = this.formData.logoCom !== '' && this.formData.comando !== ''&& this.formData.fecha !== null && this.formData.color!=='';
+    if(this.formData.comando == "Comer"){
+      this.formData.logoCom = 'https://firebasestorage.googleapis.com/v0/b/carlatesis-1d7aa.appspot.com/o/comer.jpg?alt=media&token=b66b1f25-e03b-4874-a9a9-f6cc9dc58235';
+    }else if(this.formData.comando == 'Asearse'){
+      this.formData.logoCom = 'https://firebasestorage.googleapis.com/v0/b/carlatesis-1d7aa.appspot.com/o/ba%C3%B1o.jpg?alt=media&token=df71944a-f2b4-43ce-b18f-38f0ca2e1499';
+    }else if(this.formData.comando == 'Motricidad'){
+      this.formData.logoCom = 'https://firebasestorage.googleapis.com/v0/b/carlatesis-1d7aa.appspot.com/o/motricidad.jpg?alt=media&token=1d0617ae-ba01-4e99-a354-06e2f49b1a84';
+    }
   }
   constructor(private alertController:AlertController,private db:Firestore, private storage:Storage) {}
  
@@ -39,7 +47,7 @@ export class AgendarPagePage implements OnInit {
   async agregarTarea(){
     try{
       const usuarios = await this.storage.get("User");
-    const number = usuarios + this.formData.comando + this.formData.fecha + this.formData.logoCom;
+    const number = usuarios + this.formData.comando + this.formData.fecha;
     const fechaHoraLocal = new Date(this.formData.fecha);
     const fechaHoraUTC = new Date(fechaHoraLocal.toUTCString());
     const fechaHoraFirestore = Timestamp.fromDate(fechaHoraUTC);

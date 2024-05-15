@@ -20,7 +20,14 @@
         <path fill-rule="evenodd" clip-rule="evenodd" d="M62.1387 48.9316C63.0601 48.7156 63.7339 49.0085 64.1602 49.8105C64.2774 51.7441 64.2774 53.6777 64.1602 55.6113C62.9439 58.4309 60.8054 59.8077 57.7442 59.7422C57.5977 59.5958 57.4511 59.4492 57.3047 59.3027C57.1875 57.1348 57.1875 54.9667 57.3047 52.7988C57.5684 52.4179 57.832 52.0372 58.0957 51.6562C59.3942 50.6569 60.7419 49.7487 62.1387 48.9316Z" fill="#1758F3"/>
       </svg>
     <ion-title style="font-size: 21px;"><b>CARLA<br>Tu asistente Virtual</b></ion-title>
-    <ion-icon name="person-circle-outline" slot="end" id="infocu" class="perfil" style="font-size: 70px;"></ion-icon>
+    <ion-buttons slot="primary">
+      <ion-button color="medium" fill="solid" size="small" (click)="manual()">
+        <ion-icon slot="start" ios="help-outline" md="help-circle-outline"></ion-icon>
+        Manual
+        
+      </ion-button>
+    </ion-buttons>
+    
   </ion-toolbar>
 </ion-header>
 <ion-content [fullscreen]="true">

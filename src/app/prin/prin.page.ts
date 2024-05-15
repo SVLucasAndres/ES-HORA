@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { LocalNotifications } from '@capacitor/local-notifications';
-import { ActionSheetController, NavController } from '@ionic/angular';
+import { ActionSheetController, AlertController, NavController } from '@ionic/angular';
 import { Storage } from '@ionic/storage-angular';
-import { collection, getDocs, orderBy, query, where } from 'firebase/firestore';
+import { collection, doc, getDocs, orderBy, query, setDoc, where } from 'firebase/firestore';
 import { Firestore } from '@angular/fire/firestore';
 import gsap from 'gsap';
+import { Browser } from '@capacitor/browser';
 
 @Component({
   selector: 'app-prin',
@@ -13,23 +14,28 @@ import gsap from 'gsap';
 })
 export class PrinPage implements OnInit {
   usuarioID: string = "";
-
+  async manual() {
+    await Browser.open({ url: 'https://able-duckling-809.notion.site/CARLA-tu-asistente-virtual-para-ni-os-con-S-ndrome-de-Down-4567f96b3dd54d988bae669b77230216?pvs=25' });
+  };
   constructor(
     private actionSheetCtrl: ActionSheetController,
     private router: NavController,
     private db: Firestore,
-    private storage: Storage
+    private storage: Storage,
+    private alertController: AlertController
   ) { }
 
-  ngOnInit() {
-    this.obtenerTareas();
-    this.obtenerCarla();
+  async ngOnInit() {
     gsap.to(".button-enlace", {
       duration: 1,
       ease: "power1.out",
       y: -500,
       opacity: 1
     });
+    await this.storage.create();
+    await this.obtenerTareas();
+    await this.obtenerCarla();
+    
   }
 
   tareas: any[] = [];
@@ -53,6 +59,35 @@ export class PrinPage implements OnInit {
       }
     });
   }
+  async eliminarCarla(){
+      const alert = await this.alertController.create({
+        header: 'Estás a punto de desconfigurar tu CARLA para ti',
+        subHeader: 'Y no habrá vuelta atrás',
+        message: '¿Estás seguro?',
+        buttons: [
+          {
+            text: 'Cancel',
+            role: 'cancel',
+            handler: () => {
+              console.log('No eliminó');
+            },
+          },
+          {
+            text: 'OK',
+            role: 'confirm',
+            handler: async () => {
+              this.ruta = doc(this.db,'Carlas', this.code);
+              await setDoc(this.ruta, { codigo:this.code, nombre:"", usuario:""});
+              await this.obtenerCarla();
+            },
+          },
+        ],
+      });
+    
+      await alert.present();
+    
+    
+  }
 
   async obtenerTareas() {
     this.user = await this.storage.get('User');
@@ -63,17 +98,15 @@ export class PrinPage implements OnInit {
     this.tareas = [];
     consulta.forEach(element => {
       const dato = element.data() as datauser;
-      const color = dato.color;
+      const color = "rgb("+dato.r+"," + dato.g+"," + dato.b+")";
       const comando = dato.comando;
-      const fecha = dato.fecha.toDate(); // Convertir a objeto Date
+      const fecha = dato.fecha.toDate();
       const logoCom = dato.logoCom;
       const id = dato.id;
       const usuario = dato.usuario;
       this.tareas.push({ color, comando, fecha, logoCom, id, usuario });
     });
 
-    // Programar notificaciones después de obtener las tareas
-    this.programarNotificaciones();
   }
 
   async programarNotificaciones() {
@@ -154,9 +187,11 @@ interface carla {
 }
 
 interface datauser {
-  color: string;
+  r: string;
+  g: string;
+  b: string;
   comando: string;
-  fecha: any; // Tipo any porque se convertirá a Date
+  fecha: any;
   logoCom: number;
   id: number;
   usuario: number;

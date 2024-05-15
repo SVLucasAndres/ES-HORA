@@ -47,7 +47,7 @@ export class RePage implements OnInit {
     const alert = await this.alertController.create({
       header: '¡Enhorabuena!',
       subHeader: 'Tu usuario ha sido registrado correctamente',
-      message: 'Por favor, inicia sesión con tus credenciales nuevas. ¡Disfruta!',
+      message: 'Al iniciar sesión, no dudes en ir al botón "Manual"',
       buttons: ['OK'],
     });
 

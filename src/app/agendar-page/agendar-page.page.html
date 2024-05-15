@@ -55,45 +55,29 @@
     </svg>
     <ion-text class="txt1">CARLA</ion-text>
     <ion-text class="txt2">Asistente virtual</ion-text>
-    <ion-icon name="person-circle-outline" id="info" class="perfil"></ion-icon>
-    <ion-popover trigger="info" class="pop">
-      <ng-template>
-        <ion-content class="ion-padding">
-          <ion-label>USUARIO: </ion-label>
-          <ion-label>XXXXXXXX</ion-label>
-          <br>
-          <ion-label>CONTRASEÑA: </ion-label>
-          <ion-label>XXXXXXXX</ion-label>
-        </ion-content>
-      </ng-template>
-    </ion-popover>
+    
   </div>
 
   <div class="form-container">
     <form class="form">
-      <ion-item>
-        <ion-label>Seleccionar figura:</ion-label>
-        <ion-select name="forma" placeholder="Seleccionar figura" aria-label="Figura" [(ngModel)]="formData.logoCom" (ngModelChange)="actualizarEstadoBoton()" interface="action-sheet">
-          <ion-select-option value="square-outline">
-            <ion-icon name="square" class="icono-cuadrado"></ion-icon> Cuadrado
-          </ion-select-option>
-          <ion-select-option value="ellipse-outline">
-            <ion-icon name="ellipse"></ion-icon> Círculo
-          </ion-select-option>
-          <ion-select-option value="triangle-outline">
-            <ion-icon name="triangle"></ion-icon> Triángulo
-          </ion-select-option>
-        </ion-select>
-      </ion-item>
       
   
       <ion-item>
-        <ion-label>Seleccionar el comando:</ion-label>
-        <ion-select name="comando" placeholder="Seleccionar comando" aria-label="Comando" [(ngModel)]="formData.comando" (ngModelChange)="actualizarEstadoBoton()" interface="action-sheet">
-          <ion-select-option value="Ir a dormir" >Tienes que dormir (Clave: Sueño)</ion-select-option>
-          <ion-select-option value="Ir a comer" >Tienes que comer (Clave: Comida)</ion-select-option>
-          <ion-select-option value="Ir al baño" >Tienes que ir al baño (Clave: Baño)</ion-select-option>
+        <ion-label>Seleccionar la tarea:</ion-label>
+        <ion-select name="comando" placeholder="Seleccionar tarea" aria-label="Tarea" [(ngModel)]="formData.comando" (ngModelChange)="actualizarEstadoBoton()" interface="action-sheet">
+          <ion-select-option value="Motricidad">Motricidad</ion-select-option>
+          <ion-select-option value="Comer">Comer</ion-select-option>
+          <ion-select-option value="Asearse">Asearse</ion-select-option>
         </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>Icono: </ion-label>
+        <ion-chip>
+          <ion-avatar>
+            <img alt="Silhouette of a person's head" [src]="formData.logoCom"/>
+          </ion-avatar>
+          <ion-label>{{formData.comando}}</ion-label>
+        </ion-chip>
       </ion-item>
       <ion-item>
         <ion-label>Color:</ion-label>
@@ -106,8 +90,10 @@
           <ion-select-option value="209,3,,255" >Morado</ion-select-option>
         </ion-select>
       </ion-item>
-      <ion-item>
-        <ion-datetime name="fecha" [min]=fechaHoraFormateada [value]=fechaHoraFormateada [(ngModel)]="formData.fecha" displayFormat="YYYY-MM-DDTHH:mm:ssTZD" (ngModelChange)="actualizarEstadoBoton()"></ion-datetime>
+      <ion-item >
+      <div style="width: 100%;" class="calendarioitem">
+        <ion-datetime class="calendario" name="fecha" [min]=fechaHoraFormateada [value]=fechaHoraFormateada [(ngModel)]="formData.fecha" displayFormat="YYYY-MM-DDTHH:mm:ssTZD" (ngModelChange)="actualizarEstadoBoton()"></ion-datetime>
+      </div>
       </ion-item>      
     </form>
   </div>

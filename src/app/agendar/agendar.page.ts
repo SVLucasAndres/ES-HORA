@@ -6,6 +6,9 @@
   import { DataService } from '../data.service'; 
   import { PopoverController } from '@ionic/angular';
   import gsap from 'gsap';
+  import { Browser } from '@capacitor/browser';
+
+
   @Component({
     selector: 'app-agendar',
     templateUrl: './agendar.page.html',
@@ -13,10 +16,12 @@
   })
   export class AgendarPage implements OnInit{
 
-  
+    async manual() {
+      await Browser.open({ url: 'https://able-duckling-809.notion.site/CARLA-tu-asistente-virtual-para-ni-os-con-S-ndrome-de-Down-4567f96b3dd54d988bae669b77230216?pvs=25' });
+    };
     constructor(private loadingCtrl:LoadingController , private alertController:AlertController,private service:DataService,private db:Firestore, private storage:Storage,private popoverController: PopoverController, ) { }
-    ngOnInit() { 
-      this.storage.create();
+    async ngOnInit() { 
+      await this.storage.create();
       this.obtenerTareas();
       this.tareas=[];
       gsap.to(".div-bot", {

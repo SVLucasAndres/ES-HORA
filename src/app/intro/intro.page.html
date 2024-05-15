@@ -25,9 +25,9 @@
   </div>
       <swiper-container pagination="true" class="container" (swiperDidChange)="cambiado()">
         <swiper-slide>
-            <h3>¡Hora de conectarnos con CARLA!</h3>
-            <p>Es realmente simple, lo único que debes hacer es seguir los pasos a continuación.<br><br>Desliza a la siguiente página</p>
-        </swiper-slide>
+          <h3>¡Hora de conectarnos con CARLA!</h3>
+          <p>Es realmente simple, lo único que debes hacer es seguir los pasos a continuación.<br><br>Desliza a la siguiente página</p>
+      </swiper-slide>
         <swiper-slide>
           <h3>Paso 1: Busca el código de 4 dígitos</h3>
               <ion-col size="6">
@@ -74,7 +74,7 @@
           <ion-grid>
             <ion-row>
               <ion-col size="6">
-                <p>Es para identificarla en ocasiones posteriores, aún así, te responderá unicamente a CARLA-</p>
+                <p>Es para identificarla en ocasiones posteriores, aún así, te responderá unicamente a CARLA</p>
               </ion-col>
               <ion-col size="6">
                 <ion-grid>
@@ -101,7 +101,7 @@
           <ion-grid>
             <ion-row>
               <ion-col size="6">
-                <p>Revisa la información que ingresaste, y ya habrás completado la configuración</p>
+                <p>Revisa la información que ingresaste, confirma y ve a la siguiente diapositiva</p>
                 <ion-img src="https://firebasestorage.googleapis.com/v0/b/carlatesis-1d7aa.appspot.com/o/CARLA%20NORMAL-01.png?alt=media&token=e662de86-4a9c-4ba1-91fa-ac09665852f1" class="box img"></ion-img>
                 <ion-button (click)="correct()">
                   
@@ -124,6 +124,33 @@
           </div>
           
         </swiper-slide>
+        <swiper-slide>
+          <h3>Para la siguiente sección...</h3>
+          <p>Prende tu CARLA y espera hasta que muestre un color amarillo<br><br>Desliza a la siguiente página</p>
+      </swiper-slide>
+      <swiper-slide>
+        <h3>Paso 1: Conectate a la red de CARLA</h3>
+        <p>Conectate a la red CARLA con la contraseña 123456789</p>
+      </swiper-slide>
+      <swiper-slide>
+        <h3>Paso 2: Ingresa al siguiente link</h3>
+        <p>ATENCIÓN: si no te conectaste a la red de CARLA, no podrás acceder al link. Para los siguientes pasos, te recomendamos leer el Manual de Usuario</p>
+        <ion-button (click)="manual()" expand="block" shape="round">
+          Ir a la dirección
+        </ion-button>
+        <p>Cuando termines el proceso, vuelve aquí y continúa con la siguiente diapositiva</p>
+      </swiper-slide>
+      <swiper-slide>
+        <h3>Paso 3: Graba tu voz</h3>
+        <p>CARLA empezará a grabar tu voz. Mira el LED de grabación en la parte posterior de CARLA. Ten en cuenta los siguientes comandos</p>
+        <p>1. CARLA</p>
+        <p>2. TAREA</p>
+        <p>3. HORA</p>
+        <p>4. COLOR</p>
+        <p>Si titila el LED, continua con el siguiente comando. NO CONTINÚES SI NO PARPADEA</p>
+        <p>Si el LED se mantiene estático, di el comando </p>
+        <p>Si lo deseas, puedes salir de la configuración. ¡DISFRUTA!</p>
+      </swiper-slide>
       </swiper-container>
       <div class="boton">
         <ion-button [routerLink]="'/prin'" class="salir">

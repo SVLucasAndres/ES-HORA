@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Firestore } from '@angular/fire/firestore';
+import { Browser } from '@capacitor/browser';
 import { ActionSheetController, NavController } from '@ionic/angular';
 import { Storage } from '@ionic/storage-angular';
 import { collection, doc, getDoc, where,query, getDocs } from 'firebase/firestore';
@@ -10,6 +11,9 @@ import { collection, doc, getDoc, where,query, getDocs } from 'firebase/firestor
   styleUrls: ['./cuenta.page.scss'],
 })
 export class CuentaPage implements OnInit {
+  async manual() {
+    await Browser.open({ url: 'https://able-duckling-809.notion.site/CARLA-tu-asistente-virtual-para-ni-os-con-S-ndrome-de-Down-4567f96b3dd54d988bae669b77230216?pvs=25' });
+  };
   rutauser:any;
   storage1:any;
 
@@ -49,6 +53,7 @@ export class CuentaPage implements OnInit {
   
   async ngOnInit(){
     await this.mostrardatos();
+    await this.storage.create();
   }
 capitalizeFirstLetter(inputString: string): string {
     return inputString.charAt(0).toUpperCase() + inputString.slice(1);
