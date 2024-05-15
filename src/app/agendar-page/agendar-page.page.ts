@@ -38,6 +38,18 @@ export class AgendarPagePage implements OnInit {
       this.formData.logoCom = 'https://firebasestorage.googleapis.com/v0/b/carlatesis-1d7aa.appspot.com/o/ba%C3%B1o.jpg?alt=media&token=df71944a-f2b4-43ce-b18f-38f0ca2e1499';
     }else if(this.formData.comando == 'Motricidad'){
       this.formData.logoCom = 'https://firebasestorage.googleapis.com/v0/b/carlatesis-1d7aa.appspot.com/o/motricidad.jpg?alt=media&token=1d0617ae-ba01-4e99-a354-06e2f49b1a84';
+    }else if(this.formData.comando == 'Comunicacion'){
+      this.formData.logoCom = 'https://firebasestorage.googleapis.com/v0/b/carlatesis-1d7aa.appspot.com/o/comunicaci%C3%B3n.jpg?alt=media&token=e4c652c8-c93e-4189-94bf-e94eeadb878b';
+    }else if(this.formData.comando == 'Emociones'){
+      this.formData.logoCom = 'https://firebasestorage.googleapis.com/v0/b/carlatesis-1d7aa.appspot.com/o/emociones.jpg?alt=media&token=cfba0982-794f-4e69-bddd-794681ad7f46';
+    }else if(this.formData.comando == 'Clima'){
+      this.formData.logoCom = 'https://firebasestorage.googleapis.com/v0/b/carlatesis-1d7aa.appspot.com/o/clima.jpg?alt=media&token=a0319ba5-cf08-4736-8433-0afc45215d96';
+    }else if(this.formData.comando == 'Cantar'){
+      this.formData.logoCom = 'https://firebasestorage.googleapis.com/v0/b/carlatesis-1d7aa.appspot.com/o/cantar.jpg?alt=media&token=70b55308-d972-4ea1-abcf-350806f011b6';
+    }else if(this.formData.comando == 'Casa'){
+      this.formData.logoCom = 'https://firebasestorage.googleapis.com/v0/b/carlatesis-1d7aa.appspot.com/o/casa.jpg?alt=media&token=10a0ebbb-2c25-4eb2-ba72-2bc9920b92df';
+    }else if(this.formData.comando == 'Recreo'){
+      this.formData.logoCom = 'https://firebasestorage.googleapis.com/v0/b/carlatesis-1d7aa.appspot.com/o/recreo.jpg?alt=media&token=879c3687-f610-4043-a3eb-36f5be070f7b';
     }
   }
   constructor(private alertController:AlertController,private db:Firestore, private storage:Storage) {}
