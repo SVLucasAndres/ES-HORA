@@ -53,7 +53,6 @@ export class IntroPage implements OnInit {
     await setDoc(this.ruta,{nombre: this.name, codigo: this.codigo, usuario: await this.storage.get('User')});
     this.loadingCtrl.dismiss();
     this.presentToast('top',"Carla configurada para este usuario correctamente");
-    this.router.navigateRoot('prin');
     
   }
   initSwiper() {
